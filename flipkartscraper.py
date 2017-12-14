@@ -4,11 +4,18 @@ from urllib.error import HTTPError
 from bs4 import BeautifulSoup as bs
 from tabulate import tabulate
 
+from time import sleep
+from time import time
+from random import randint
+
 desc=[]
 physical=[]
 specs=[]
 prices=[]
 database=[]
+
+start_time = time()
+requests = 0
 
 mainUrl = "https://www.flipkart.com/laptops/pr?page="
 pageNumber=1
@@ -66,12 +73,25 @@ def extract_data(bsObj):
         prices.append(laptop_price)  
         
 def extract_data_multiple_pages(pages):
+    requests = 0
     for i in range(pages):
         #print("PAGE" + str(i+1))
         #print("_______________________________________________________________________________________________________________________________")
         
         url = get_url(mainUrl , i+1 , nextUrl)
         page = getpage(url)
+
+        sleep(randint(8,15))
+        requests += 1
+        elapsed_time = time() - start_time
+        print('Request:{}; Frequency: {} requests/s'.format(requests, requests/elapsed_time))
+
+        if page.status != 200:
+            warn('Request: {}; Status code: {}'.format(requests, response.status_code))
+
+        if requests > 72:
+            warn('Number of requests was greater than expected.')  
+            break 
 
         if page==None:
             print("Error reading page")
