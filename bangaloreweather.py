@@ -1,4 +1,4 @@
-
+import pandas as pd
 from urllib.request import urlopen
 from urllib.error import HTTPError
 from bs4 import BeautifulSoup as bs
@@ -16,7 +16,7 @@ def getpage(url):
     
 def calc_weather(days , dates , conditions , maxTemps ,minTemps , summary):
     weathers = []
-    for i in range(5):
+    for i in range(14):
         weather=[]
         weather.append(days[i])
         weather.append(dates[i])
@@ -91,6 +91,17 @@ extract_data(bsObj ,days , dates , conditions , maxTemps , minTemps , summary)
 weathers = calc_weather(days , dates , conditions , maxTemps ,minTemps , summary)    
         
 printTable(weathers)
+
+weather = pd.DataFrame({
+        "days": days, 
+        "dates": dates, 
+        "conditions": conditions, 
+        "maxTemps":maxTemps,
+        "minTemps":minTemps,
+        "summary":summary
+        
+    })
+weather
      
     
     
