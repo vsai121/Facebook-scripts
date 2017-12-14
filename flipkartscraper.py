@@ -48,7 +48,7 @@ def extract_data(bsObj):
     
         laptop_desc_col = laptop_col.select("._3wU53n")[0]
         laptop_desc = laptop_desc_col.string
-        desc.append(laptop_desc[0:40])
+        desc.append(laptop_desc)
     
         laptop_phy_col = laptop_col.select(".OiPjke")[0]
         laptop_phy = laptop_phy_col.string
@@ -91,7 +91,31 @@ def extract_data_multiple_pages(pages):
        
 if __name__ == "__main__":
     extract_data_multiple_pages(5)
-    print(database[0][1])
+    #print(database[0])
+    f= open("laptop_data.txt" , "w")
+    
+    for page in database:
+        for laptop in page:
+            f.write("   %s\n" % "Description of laptop")
+            f.write("           %s\n" %laptop[0])
+            
+            f.write("   %s\n" % "Physical specs")
+            f.write("       %s\n" % laptop[1])
+            
+            f.write("   %s\n" % "Specs of laptop")
+            for spec in laptop[3]:
+                f.write("       %s\n" % spec)
+                
+            
+            f.write("   %s\n" % "Price of laptop")
+            f.write("       %s\n" % laptop[2])
+            
+            f.write("%s" %"\n\n\n\n\n")            
+            
+            
+            
+                
+    
     
     
     
