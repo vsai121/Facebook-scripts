@@ -1,7 +1,7 @@
 import facebook
 import datetime
 
-token = "EAACEdEose0cBABpvVKZARBJwRN3s7uMRyZBxih81JQzR9BLAjR3uoxpnKK3D5AAvpkqdInIGkAhY6HsAB4BQM0hfFEQPzsukQTuv6JVSM1w5jqV9z1Ny53Sr6clxj1FPJZCJ1VP0GUOsTbZCxtZBxQVXMQSqmXRg1WwZCyMa6R3JCulj8ugtwexZBbc5qQaEqoZD"
+token = "Your token"
 
 graph = facebook.GraphAPI(token)
 
